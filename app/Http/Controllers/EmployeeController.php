@@ -59,7 +59,7 @@ class EmployeeController extends Controller
         // show all input data
         Log::info($request->all());
 
-        try{
+
         //ตรวจสอบข้อมูลที่รับมาจากฟอร์ม
         $validated = $request->validate([
             'birth_date' => 'required|date',
@@ -70,7 +70,8 @@ class EmployeeController extends Controller
             'dept_no' => 'required', // เพิ่มการตรวจสอบ dept_no
             'img' => 'required', // เพิ่มการตรวจสอบ img
         ]);
-
+        
+        try{
         DB::transaction(function() use ($validated){
             //หาค่า emp_no ล่าสุด
             $latestEmpNo = DB::table('employees')->max('emp_no')?? 0;//ถ้าไม่มีข้อมูลให้เป็น 0

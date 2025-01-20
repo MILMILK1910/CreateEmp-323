@@ -56,7 +56,7 @@ const CreateEmployee = ({ departments }) => {
                             onChange={(e) => setData('first_name', e.target.value)}
                             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         />
-                        {errors.first_name && <div>{errors.first_name}</div>}
+                        {errors.first_name && <div className='text-red-500 text-sm'>{errors.first_name}</div>}
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Last Name:</label>
@@ -66,7 +66,7 @@ const CreateEmployee = ({ departments }) => {
                             onChange={(e) => setData('last_name', e.target.value)}
                             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         />
-                        {errors.last_name && <div>{errors.last_name}</div>}
+                        {errors.last_name && <div className='text-red-500 text-sm'>{errors.last_name}</div>}
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Birth Date:</label>
@@ -76,7 +76,7 @@ const CreateEmployee = ({ departments }) => {
                             onChange={(e) => setData('birth_date', e.target.value)}
                             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         />
-                        {errors.birth_date && <div>{errors.birth_date}</div>}
+                        {errors.birth_date && <div className='text-red-500 text-sm'>{errors.birth_date}</div>}
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Gender:</label>
@@ -89,7 +89,7 @@ const CreateEmployee = ({ departments }) => {
                             <option value="M">Male</option>
                             <option value="F">Female</option>
                         </select>
-                        {errors.gender && <div>{errors.gender}</div>}
+                        {errors.gender && <div className='text-red-500 text-sm'>{errors.gender}</div>}
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Hire Date:</label>
@@ -99,7 +99,7 @@ const CreateEmployee = ({ departments }) => {
                             onChange={(e) => setData('hire_date', e.target.value)}
                             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         />
-                        {errors.hire_date && <div>{errors.hire_date}</div>}
+                        {errors.hire_date && <div className='text-red-500 text-sm'>{errors.hire_date}</div>}
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Department:</label>
@@ -113,7 +113,7 @@ const CreateEmployee = ({ departments }) => {
                                 </option>
                             ))}
                         </select>
-                        {errors.department && <div>{errors.department}</div>}
+                        {errors.department && <div className='text-red-500 text-sm'>{errors.department}</div>}
                     </div>
                     <div className="mb-4">
                         <label
@@ -125,7 +125,7 @@ const CreateEmployee = ({ departments }) => {
                         accept="image/*" // กำหนดให้รับไฟล์รูปภาพเท่านั้น
                         onChange={handleFileChange}
                         />
-                        {errors.img && <div>{errors.img}</div>}
+                        {errors.img && <div className='text-red-500 text-sm'>{errors.img}</div>}
                     </div>
                     <div className="flex justify-end mt-7">
                     <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Finish</button>
