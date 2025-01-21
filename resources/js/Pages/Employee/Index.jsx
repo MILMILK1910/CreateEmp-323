@@ -192,7 +192,7 @@ export default function Index({ employees, query }) {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{employee.last_name}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{employee.birth_date}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
-                                            <img src={employee.img} className="h-8 w-8 rounded-full" />
+                                        <img src={employee.img} className="h-8" />
                                         </td>
                                     </tr>
                                 ))}
