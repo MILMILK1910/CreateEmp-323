@@ -43,17 +43,6 @@ export default function Index({ employees, query }) {
         setSortConfig({ key, direction });
     };
 
-    const [data, setData] = useState({ img: '' }); // State for form data
-    const [preview, setPreview] = useState(null); // State for image preview
-
-    const handleFileChange = (e) => { // ฟังก์ชัน handleFileChange สำหรับจัดการเมื่อไฟล์ถูกเปลี่ยน
-        const file = e.target.files[0]; // ดึงไฟล์แรกจาก input
-        if (file) { // ถ้ามีไฟล์
-            setData({ ...data, img: file }); // ให้เซ็ตค่าของ img ให้เป็นไฟล์ที่เลือก
-            setPreview(URL.createObjectURL(file)); // Set preview URL
-        }
-    };
-
     // ฟังก์ชันสำหรับการสร้างปุ่มการแบ่งหน้า
     const renderPagination = () => {
         const currentPage = employees.current_page;
@@ -203,7 +192,7 @@ export default function Index({ employees, query }) {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{employee.last_name}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{employee.birth_date}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
-                                            {employee.img && <img src={`storage/img'${employee.img}`} className="h-8"/>}
+                                        <img src={employee.img} className="h-8" />
                                         </td>
                                     </tr>
                                 ))}

@@ -9,6 +9,7 @@ use Illuminate\Pagination\Paginator;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 
 class EmployeeController extends Controller
@@ -26,6 +27,7 @@ class EmployeeController extends Controller
         ->orWhere('last_name', 'like', '%'.$query.'%')
         ->orderBy('emp_no', 'desc') //เรียงจากมากไปน้อย
         ->paginate(20);
+
 
         //Log::info($employees);
 
@@ -79,12 +81,15 @@ class EmployeeController extends Controller
 
             Log::info($newEmpNo);
 
+            $img = null; // Initialize $img variable
+
             if(request()->hasFile('img')){ // ตรวจสอบว่ามีไฟล์ img หรือไม่
                 $file = request()->file('img'); // ดึงข้อมูลไฟล์ img มาเก็บไว้ในตัวแปร $file
-                $img = $file->store('img/employee','public');
-
-            }else{
-                $img = null;
+                $extention = $file->getClientOriginalExtension(); // ดึงนามสกุลของไฟล์ img มาเก็บไว้ในตัวแปร $extention
+                $filename = $newEmpNo.'.'.$extention; // สร้างชื่อไฟล์ใหม่โดยใช้ emp_no และนามสกุลของไฟล์เดิม
+                $path = 'img/employee/'; // กำหนด path ของไฟล์ img
+                $file->move(public_path($path), $filename); // ย้ายไฟล์ img ไปเก็บในโฟลเดอร์ public/img/employee
+                $img = $path.$filename; // Set the $img variable
             }
 
             //บันทึกข้อมูลลงในตาราง employees
@@ -95,7 +100,7 @@ class EmployeeController extends Controller
                 'last_name' => $validated['last_name'],
                 'gender' => $validated['gender'],
                 'hire_date' => $validated['hire_date'] ?? now(),
-                'img' => $validated['img'], // เพิ่มการบันทึกข้อมูล img
+                'img' => $img, // เพิ่มการบันทึกข้อมูล img
             ]);
 
             //บันทึกข้อมูลลงในตาราง dept_emp

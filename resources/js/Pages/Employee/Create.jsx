@@ -16,7 +16,6 @@ const CreateEmployee = ({ departments }) => {
         img: '',
     });
 
-    const [preview, setPreview] = useState(null); // State for image preview
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,6 +33,8 @@ const CreateEmployee = ({ departments }) => {
             setData('img', file); // ให้เซ็ตค่าของ img ให้เป็นไฟล์ที่เลือก
         }
     };
+
+
 
     return (
         <AuthenticatedLayout
