@@ -2,8 +2,8 @@ import { useForm } from '@inertiajs/react';
 import React, { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
-import FlashMessage from '@/Components/FlashMessage';// นำเข้า FlashMessage จาก path ที่กำหนด
-import { usePage } from '@inertiajs/react';// นำเข้า usePage จาก @inertiajs/react
+import FlashMessage from '@/Components/FlashMessage';// นำเข้า FlashMessage
+import { usePage } from '@inertiajs/react';
 
 const CreateEmployee = ({ departments }) => {
     const { data, setData, post, errors,processing } = useForm({
@@ -15,6 +15,8 @@ const CreateEmployee = ({ departments }) => {
         department: '',
         img: '',
     });
+
+    const [preview, setPreview] = useState(null); // State for image preview
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,8 +31,7 @@ const CreateEmployee = ({ departments }) => {
     const handleFileChange = (e) => { // ฟังก์ชัน handleFileChange สำหรับจัดการเมื่อไฟล์ถูกเปลี่ยน
         const file = e.target.files[0]; // ดึงไฟล์แรกจาก input
         if (file) { // ถ้ามีไฟล์
-            const path = URL.createObjectURL(file); // สร้าง URL สำหรับไฟล์
-            data.img = path; // กำหนด path ไปยัง data.img
+            setData('img', file); // ให้เซ็ตค่าของ img ให้เป็นไฟล์ที่เลือก
         }
     };
 
